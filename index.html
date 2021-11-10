@@ -10,15 +10,30 @@
       href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <script
-      src="https://kit.fontawesome.com/10903464c0.js"
-      crossorigin="anonymous"
-    ></script>
     <link rel="stylesheet" href="./Styles/main.css" />
     <title>E-commerce Product Page</title>
   </head>
   <body>
     <div class="App">
+      <div id="app-overlay" class="app-overlay">
+        <div class="modal-view">
+          <div class="modal-close-container">
+              <img class="close-icon" onclick="disableModalView()" src="./Images/icon-close.svg" alt="close-icon">
+          </div>
+          <div class="modal-image-container">
+            <div class="modal-image-focused">
+              <div class="previous-icon" onclick="modalPrevious()"> 
+                <img src="./Images/icon-previous.svg" alt="previous-icon">
+              </div>
+              <img id="modal-image-focused" class="focused" src="" alt="product-image">
+              <div class="next-icon" onclick="modalNext()"> 
+                <img src="./Images/icon-next.svg" alt="next-icon">
+              </div>
+            </div>
+            <div id="modal-image-array" class="modal-image-array"></div>
+          </div>
+        </div>
+      </div>
       <div class="container">
         <nav>
           <img src="./Images/logo.svg" alt="logo" />
@@ -30,7 +45,18 @@
             <li>Contact</li>
           </ul>
           <div class="cart-user">
-            <img src="./Images/icon-cart-grey.svg" alt="cart" />
+            <div id="cart-container" class="cart-container" onclick="toggleCartShow()">
+              <div class="cart-icon-container">              
+                <img class="cart-icon" src="./Images/icon-cart-grey.svg" alt="cart" />
+                <div id="cart-count" class="cart-count"></div>
+              </div>
+              <div id="cart" class="cart">
+                <div class="cart-header"><p>Cart</p></div>
+                <div id="cart-content" class="cart-content"><p>Your cart is empty</p>
+                </div>
+                <div class="checkout-button-container"><div class="checkout-button"><p>Checkout</p></div></div>
+              </div>
+            </div>
             <img class="avatar" src="./Images/image-avatar.png" alt="avatar" />
           </div>
         </nav>
@@ -39,26 +65,9 @@
             <div class="product-images">
               <div class="image-container">
                 <div class="image-focused">
-                  <img src="./Images/image-product-1.jpg" alt="product-image" />
+                  <img id="image-focused" onclick="enableModalView(this)" src="" alt="product-image" />
                 </div>
-                <div class="image-array">
-                  <img
-                    class="active"
-                    src="./Images/image-product-1-thumbnail.jpg"
-                    alt="product-image-1"
-                  />
-                  <img
-                    src="./Images/image-product-2-thumbnail.jpg"
-                    alt="product-image-2"
-                  />
-                  <img
-                    src="./Images/image-product-3-thumbnail.jpg"
-                    alt="product-image-3"
-                  />
-                  <img
-                    src="./Images/image-product-4-thumbnail.jpg"
-                    alt="product-image-4"
-                  />
+                <div id="image-array" class="image-array">
                 </div>
               </div>
             </div>
@@ -66,7 +75,7 @@
           <div class="right-container">
             <div class="product-description">
               <p class="company">SNEAKER COMPANY</p>
-              <h1 class="product">Fall Limited Edition Sneakers</h1>
+              <h1 id="product-name" class="product">Fall Limited Edition Sneakers</h1>
               <p class="details">
                 These low-profile sneakers are your perfect casual wear
                 companion. Featuring a durable rubber outer sole, they’ll
@@ -74,17 +83,17 @@
               </p>
               <p class="price">
                 <span class="price-focus"
-                  ><span class="current">$125.00</span
+                  ><span id="current-price" class="current">$125.00</span
                   ><span class="sale">50%</span></span
                 ><br /><span class="regular">$250.00</span>
               </p>
               <div class="button-group">
                 <div class="quantity-button">
-                  <div class="subtract"><i class="fas fa-minus"></i></div>
-                  <div class="quantity">0</div>
-                  <div class="add"><i class="fas fa-plus"></i></div>
+                  <div class="subtract"><img onclick="decrement()" src="./Images/icon-minus.svg" alt="minus"/></div>
+                  <div class="quantity"><p id="quantity-value">1</p></div>
+                  <div class="add"><img onclick="increment()" src="./Images/icon-plus.svg" alt="minus"/></i></div>
                 </div>
-                <div class="add-to-cart-button">
+                <div class="add-to-cart-button" onclick="addToCart()">
                   <p>
                     <img src="./Images/icon-cart-white.svg" alt="cart" />Add to
                     Cart
@@ -96,5 +105,10 @@
         </div>
       </div>
     </div>
+    <script type="module" src="./JS/loadImages.js"></script>
+    <script src="./JS/imageToggle.js"></script>
+    <script src="./JS/quantityChange.js"></script>
+    <script src="./JS/modalManager.js"></script>
+    <script src="./JS/cartManager.js"></script>
   </body>
 </html>
