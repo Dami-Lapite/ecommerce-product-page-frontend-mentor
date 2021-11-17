@@ -49,6 +49,8 @@ function modalNext() {
   }
   if (nextIndex < $modal_images.length) {
     modalToggleImage($modal_images[nextIndex]);
+  } else {
+    modalToggleImage($modal_images[0]);
   }
 }
 
@@ -64,5 +66,7 @@ function modalPrevious() {
   }
   if (nextIndex >= 0) {
     modalToggleImage($modal_images[nextIndex]);
+  } else {
+    modalToggleImage($modal_images[$modal_images.length - 1]);
   }
 }
