@@ -1,16 +1,18 @@
 function enableModalView($current) {
-  $overlay = document.getElementById("app-overlay");
-  $overlay.classList.add("active");
-  $modal_image_focused = document.getElementById("modal-image-focused");
-  var regexStr = /\/Images\/.+\.jpg|svg|png/;
-  var current_src = $current.src.match(regexStr);
-  $modal_image_focused.src = "." + current_src;
-  $modal_images = document.querySelectorAll(".modal-product-image");
-  $modal_images.forEach((image) => {
-    if (image.src == $current.src) {
-      image.classList.add("active");
-    }
-  });
+  if (window.innerWidth >= 1036) {
+    $overlay = document.getElementById("app-overlay");
+    $overlay.classList.add("active");
+    $modal_image_focused = document.getElementById("modal-image-focused");
+    var regexStr = /\/Images\/.+\.jpg|svg|png/;
+    var current_src = $current.src.match(regexStr);
+    $modal_image_focused.src = "." + current_src;
+    $modal_images = document.querySelectorAll(".modal-product-image");
+    $modal_images.forEach((image) => {
+      if (image.src == $current.src) {
+        image.classList.add("active");
+      }
+    });
+  }
 }
 
 function disableModalView() {
